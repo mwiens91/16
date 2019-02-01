@@ -1,3 +1,5 @@
+#!/usr/bin/env Rscript
+
 library(ggplot2)
 library(reshape2)
 
@@ -40,6 +42,7 @@ p <- (
   + geom_bar(stat="identity")
   + ylim(0, 1)
 )
+x11()
 print(p)
 
 # Plot a heatmap of correlation values
@@ -53,4 +56,8 @@ p <- (
   ) +
   geom_tile()
 )
+x11()
 print(p)
+
+# Wait for user to kill script
+Sys.sleep(999999999999)
