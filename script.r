@@ -4,40 +4,8 @@ library(ggplot2)
 library(reshape2)
 
 # Personality test data
-results <- data.frame(
-  rbind(
-    c(0,0,0,0),
-    c(0,0,0,0),
-    c(0,0,1,1),
-    c(0,1,0,0),
-    c(0,1,1,0),
-    c(0,1,1,0),
-    c(0,1,1,0),
-    c(0,1,1,1),
-    c(0,1,1,1),
-    c(1,0,0,0),
-    c(1,0,1,0),
-    c(1,1,0,0),
-    c(1,1,0,0),
-    c(1,1,0,0),
-    c(1,1,0,1),
-    c(1,1,0,1),
-    c(1,1,1,0),
-    c(1,1,1,0),
-    c(1,1,1,0),
-    c(1,1,1,0),
-    c(1,1,1,0),
-    c(1,1,1,0),
-    c(1,1,1,1),
-    c(1,1,1,1),
-    c(1,1,1,1),
-    c(1,1,1,1),
-    c(1,1,1,1),
-    c(1,1,1,1),
-    c(1,1,1,1),
-    c(1,1,1,1)
-  )
-)
+raw_data <- read.table(file="data.tsv", colClasses = c("character", "character"), header = TRUE)
+results <- as.data.frame(do.call(rbind, lapply(strsplit(raw_data$result, split = ""), as.numeric)))
 colnames(results) <- c("Q1", "Q2", "Q3", "Q4")
 
 percent_answered <- data.frame(
